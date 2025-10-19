@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shloka Shah - MEMS & Semiconductor Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            display: block;
+            padding: 20px 25px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .project-meta {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tech-tag {
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        .process-flow {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .cert-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .cert-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .cert-issuer {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav a {
+                padding: 15px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .project-grid, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Shloka Shah</h1>
+            <p>MEMS & Semiconductor Fabrication Engineer</p>
+            <div class="contact-info">
+                <a href="mailto:shlokashah06@gmail.com">📧 shlokashah06@gmail.com</a>
+                <a href="tel:513-413-3753">📱 513-413-3753</a>
+                <a href="https://linkedin.com/in/shlokashah2001/" target="_blank">💼 LinkedIn</a>
+                <a>📍 Cincinnati, OH</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#mems-project">MEMS Sensor</a></li>
+            <li><a href="#thesis">Thesis Project</a></li>
+            <li><a href="#isro">ISRO Research</a></li>
+            <li><a href="#fpga">FPGA Project</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="highlight-box">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Graduate student in Electrical Engineering with hands-on cleanroom experience in semiconductor fabrication (FEOL & BEOL) 
+                    and advanced training through the Intel-supported OASiS Foundations Program. Skilled in photolithography, SPC, DOE, microscopy, 
+                    and process integration, with proven ability to optimize process windows and troubleshoot tool/recipe issues. 
+                    Passionate about applying metrology, defect inspection, and yield improvement to support high-volume semiconductor manufacturing.
+                </p>
+            </div>
+            
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="metric-value">3.67</div>
+                    <div class="metric-label">Graduate GPA</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">13</div>
+                    <div class="metric-label">Lab Processes Completed</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">4.86</div>
+                    <div class="metric-label">mV/psi Sensitivity Achieved</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2.007%</div>
+                    <div class="metric-label">Linearity FS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mems-project">
+        <div class="container">
+            <h2>MEMS Pressure Sensor Fabrication</h2>
+            <h3>University of Cincinnati | EECE 5141/6041C</h3>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">
+                Instructor: Dr. Tao Li | Team: Shloka Shah, Robert Hovarth, Rajkumar Henry
+            </p>
+
+            <div class="highlight-box">
+                <h4 style="color: var(--primary); margin-bottom: 15px;">Objective</h4>
+                <p>
+                    To design, fabricate, and characterize a MEMS-based piezoresistive pressure sensor using standard 
+                    CMOS-compatible processes, integrating both front-end (FEOL) and back-end (BEOL) fabrication steps.
+                </p>
+            </div>
+
+            <h3 style="margin-top: 40px;">Cleanroom Process Flow</h3>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Wafer Preparation</strong><br>
+                        Baker clean (HF dip, JTB-100 clean), native oxide removal, dry-wet-dry oxidation at 1000°C to form SiO₂ field layer (~1.15 µm)
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Photolithography</strong><br>
+                        Three-mask process using AZ1518 photoresist for membrane patterning, resistor alignment with backside IR alignment, and via openings
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Etching</strong><br>
+                        BOE for window definition; 25% TMAH anisotropic Si etching at 75°C to form 90 µm diaphragms
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Doping & Annealing</strong><br>
+                        Boron ion implantation at 50 keV, 8×10¹⁴ atoms/cm², 7° tilt; annealed at 900°C in N₂ for 30 min
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <strong>Metallization</strong><br>
+                        E-beam evaporation of 0.5 µm Al film at 10 Å/s; sintering at 500°C in N₂ for 5 min for ohmic contact
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div>
+                        <strong>Anodic Bonding</strong><br>
+                        Si-glass bonding (Pyrex) at 450°C, 500 V, 1.5 h to encapsulate diaphragm structure
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Metrology & Characterization</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Ellipsometry</span>
+                <span class="tech-tag">4-Point Probe</span>
+                <span class="tech-tag">Optical Microscopy</span>
+                <span class="tech-tag">SEM</span>
+                <span class="tech-tag">Pressure Testing (0-30 psi)</span>
+            </div>
+
+            <div class="metrics" style="margin-top: 30px;">
+                <div class="metric-card">
+                    <div class="metric-value">4.86</div>
+                    <div class="metric-label">mV/psi Sensitivity</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2.007%</div>
+                    <div class="metric-label">FS Linearity</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0.126</div>
+                    <div class="metric-label">Ω/□ Al Sheet Resistance</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">214.9</div>
+                    <div class="metric-label">Ω/□ PZR Sheet Resistance</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">Key Results</h4>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Achieved stable device response across multiple pressure cycles with minimal hysteresis</li>
+                    <li>Process yield improved through iterative mask alignment and SPC-based oxide control</li>
+                    <li>Successfully integrated full MEMS process flow from oxidation to device testing</li>
+                    <li>Applied Deal-Grove oxidation model and piezoresistive strain theory</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="thesis">
+        <div class="container">
+            <h2>Master's Thesis Project</h2>
+            <h3>Real-time Pressure Monitoring System for Post-operative Hemostasis Management</h3>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">
+                University of Cincinnati | December 2023 - Present
+            </p>
+
+            <div class="highlight-box">
+                <h4 style="color: var(--primary); margin-bottom: 15px;">Project Overview</h4>
+                <p>
+                    Development of a wearable, real-time pressure monitoring system to assist in hemostasis management for 
+                    post-operative cardiovascular patients. The system continuously monitors localized pressure levels and transmits 
+                    data wirelessly to a clinician dashboard, minimizing manual intervention and improving patient safety.
+                </p>
+            </div>
+
+            <h3 style="margin-top: 40px;">System Architecture</h3>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Embedded Controller</strong><br>
+                        Raspberry Pi Pico 2 W for real-time processing and wireless connectivity
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Signal Conditioning</strong><br>
+                        Buffered analog front-end ensuring stable sensor signal acquisition
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Data Conversion</strong><br>
+                        External high-resolution ADC (I²C interface) for accurate digital sampling
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Visualization</strong><br>
+                        Custom dashboard for real-time monitoring and data logging over secure local network
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack" style="margin-top: 30px;">
+                <span class="tech-tag">Raspberry Pi Pico 2 W</span>
+                <span class="tech-tag">C/MicroPython</span>
+                <span class="tech-tag">BLE</span>
+                <span class="tech-tag">Custom PCB Design</span>
+                <span class="tech-tag">Real-time Data Processing</span>
+                <span class="tech-tag">IoT Dashboard</span>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">Current Progress</h4>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Designed and fabricated custom PCB integrating data acquisition, signal processing, and wireless communication</li>
+                    <li>Developed embedded firmware for continuous pressure sampling and wireless data transfer</li>
+                    <li>Implemented web-based dashboard for live visualization</li>
+                    <li>Currently prototyping custom flexible pressure sensor for improved mechanical compliance</li>
+                    <li>Ongoing calibration and verification under controlled bench conditions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="isro">
+        <div class="container">
+            <h2>ISRO Research Internship</h2>
+            <h3>Study of Rivers as Complex Networks</h3>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">
+                Space Applications Centre, ISRO | December 2022 - March 2023<br>
+                Guide: Mr. Vibhuti Bhushan Jha (Scientist/Engineer-SD)
+            </p>
+
+            <div class="highlight-box">
+                <h4 style="color: var(--primary); margin-bottom: 15px;">Research Focus</h4>
+                <p>
+                    Explored topological and spectral characteristics of river networks using complex network theory to analyze 
+                    river basins as interconnected systems and identify structural patterns relevant to hydrology, geomorphology, 
+                    and environmental modeling.
+                </p>
+            </div>
+
+            <h3 style="margin-top: 40px;">Methodology</h3>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Data Extraction</strong><br>
+                        River basins and networks from HydroSHEDS DEM data using QGIS and Python
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Graph Representation</strong><br>
+                        Converted river shapefiles into graph representations (nodes and edges)
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Network Analysis</strong><br>
+                        Computed adjacency matrices and analyzed eigenvalue spectra, betweenness centrality, closeness centrality, degree distributions
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack" style="margin-top: 30px;">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">NetworkX</span>
+                <span class="tech-tag">QGIS</span>
+                <span class="tech-tag">NumPy</span>
+                <span class="tech-tag">Matplotlib</span>
+                <span class="tech-tag">Spectral Graph Theory</span>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">Key Findings</h4>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>River networks exhibited finite-width eigenvalue distributions with measurable spectral gaps, independent of basin size and shape</li>
+                    <li>Spectral features consistent with Optimal Channel Network (OCN) models, confirming universality in river network topology</li>
+                    <li>Validated applicability of complex network theory to real-world hydrological systems</li>
+                    <li>Suggested framework for large-scale environmental modeling and cross-planetary drainage analysis</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="fpga">
+        <div class="container">
+            <h2>Smart Car Parking System</h2>
+            <h3>Verilog & Quartus FPGA Simulation</h3>
+
+            <div class="highlight-box">
+                <p>
+                    Developed a secure, automated parking management system using Finite State Machines (FSM) implemented in 
+                    Verilog and simulated in Intel Quartus II. The project aimed to reduce human involvement and optimize parking 
+                    slot utilization through logic-based automation.
+                </p>
+            </div>
+
+            <div class="tech-stack" style="margin: 30px 0;">
+                <span class="tech-tag">Verilog</span>
+                <span class="tech-tag">Intel Quartus II</span>
+                <span class="tech-tag">FSM Design</span>
+                <span class="tech-tag">Digital Logic</span>
+            </div>
+
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>FSM Design</strong><br>
+                        Moore-type FSM to control gate access, LED indicators, and state transitions across five conditions
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Security Implementation</strong><br>
+                        Password-based authentication for vehicle entry and exit
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Sensor Integration</strong><br>
+                        Entrance and exit sensors to track vehicle flow and update slot availability
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Verification</strong><br>
+                        Logic verified through waveform simulation in Quartus
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">Impact & Extensions</h4>
+                <p>
+                    Demonstrated a scalable, cost-effective parking solution with real-time monitoring and minimal hardware usage. 
+                    Proposed extensions include multi-slot parking with LCD-based vacancy display and unique access keys for enhanced safety.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Semiconductor Fabrication</h4>
+                    <ul>
+                        <li>UV Photolithography</li>
+                        <li>Thermal Oxidation (Dry-Wet-Dry)</li>
+                        <li>TMAH/BOE Etching</li>
+                        <li>Ion Implantation (Boron Doping)</li>
+                        <li>E-Beam Evaporation</li>
+                        <li>Anodic Bonding</li>
+                        <li>Cleanroom Protocols (Class 1000)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Metrology & Characterization</h4>
+                    <ul>
+                        <li>SEM</li>
+                        <li>Optical Microscopy</li>
+                        <li>Ellipsometry</li>
+                        <li>4-Point Probe</li>
+                        <li>Statistical Process Control (SPC)</li>
+                        <li>Design of Experiments (DOE)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Data Analysis & Programming</h4>
+                    <ul>
+                        <li>Python (NumPy, Pandas, Matplotlib)</li>
+                        <li>MATLAB</li>
+                        <li>R</li>
+                        <li>Excel (Advanced)</li>
+                        <li>C/C++</li>
+                        <li>MicroPython</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Embedded Systems</h4>
+                    <ul>
+                        <li>ARM Cortex-M</li>
+                        <li>Raspberry Pi Pico W</li>
+                        <li>ESP32, Arduino</li>
+                        <li>Silicon Labs EFR32</li>
+                        <li>BLE Communication</li>
+                        <li>PCB Design</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Software Tools</h4>
+                    <ul>
+                        <li>COMSOL Multiphysics</li>
+                        <li>AutoCAD</li>
+                        <li>SolidWorks</li>
+                        <li>Keil, Quartus</li>
+                        <li>Eagle, Proteus, Multisim</li>
+                        <li>QGIS</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Cleanroom Equipment</h4>
+                    <ul>
+                        <li>Spin Coater</li>
+                        <li>Mask Aligner (UV Exposure)</li>
+                        <li>Wet Bench (BOE, TMAH)</li>
+                        <li>Oxidation Furnace</li>
+                        <li>E-Beam Evaporator</li>
+                        <li>Anodic Bonder</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <h2>Certifications & Training</h2>
+            
+            <div class="certification-grid">
+                <div class="cert-item">
+                    <div class="cert-title">OASiS Foundations Program</div>
+                    <div class="cert-issuer">Intel-supported | 2025</div>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-title">Advanced Semiconductor Packaging</div>
+                    <div class="cert-issuer">Arizona State University | 2025
